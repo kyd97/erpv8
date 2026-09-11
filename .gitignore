@@ -1,0 +1,16 @@
+# CodeIgniter runtime output
+application/cache/*
+!application/cache/.htaccess
+!application/cache/index.html
+application/logs/*
+!application/logs/index.html
+
+# Application runtime state
+data/backup/*
+data/cache/*
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*~
+*.swp
