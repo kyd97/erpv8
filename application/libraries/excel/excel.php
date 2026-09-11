@@ -255,7 +255,7 @@ class Excel
      *
      * Some basic initialisation
      */ 
-    function Excel()
+    function __construct()
     {
         $this->_ole = new OLERead();
         $this->setUTFEncoder('iconv');

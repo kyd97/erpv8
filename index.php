@@ -18,7 +18,7 @@ date_default_timezone_set('Asia/shanghai');
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
-	define('ENVIRONMENT', 'production');
+	define('ENVIRONMENT', getenv('ERPV8_ENV') ?: 'production');
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING

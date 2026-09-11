@@ -44,7 +44,7 @@ class Mysql_model extends CI_Model {
 		return $query->row_array();					
 	}
 	
-	public function get_row($table,$where=array(1=>1),$select) {
+	public function get_row($table,$where=array(1=>1),$select=null) {
 	    $query = $this->db->select($select)
 		                            ->from($this->db->dbprefix($table))
 									->where($where)

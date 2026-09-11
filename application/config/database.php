@@ -48,13 +48,20 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'root';
-$db['default']['password'] = 'root';
-$db['default']['database'] = 'erpv8';
-$db['default']['dbdriver'] = 'mysql';
+// PHP 8.1+ makes mysqli throw exceptions by default, while CodeIgniter 2
+// expects the legacy warning behaviour. Restore it before any connection.
+mysqli_report(MYSQLI_REPORT_OFF);
+
+// Connection settings come from the environment so credentials never land in
+// Git. See .env.local.example for the variables this application reads.
+$db['default']['hostname'] = getenv('ERPV8_DB_HOST') ?: 'localhost';
+$db['default']['username'] = getenv('ERPV8_DB_USER') ?: 'root';
+$db['default']['password'] = getenv('ERPV8_DB_PASS') ?: '';
+$db['default']['database'] = getenv('ERPV8_DB_NAME') ?: 'erpv8';
+$db['default']['port']     = getenv('ERPV8_DB_PORT') ?: '';
+$db['default']['dbdriver'] = 'mysqli';
 $db['default']['dbprefix'] = 'ci_';
-$db['default']['pconnect'] = TRUE;
+$db['default']['pconnect'] = FALSE;
 $db['default']['db_debug'] = TRUE;
 $db['default']['cache_on'] = FALSE;
 $db['default']['cachedir'] = './data/cache/';

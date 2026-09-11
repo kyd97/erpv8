@@ -114,11 +114,14 @@ class Common_model extends CI_Model{
 	
  
 	public function logs($info) {
-		$data['userId']     =  $this->jxcsys['uid'];
-		$data['name']       =  $this->jxcsys['name'];
+		// $this->jxcsys is cached in __construct, so it is still empty when the
+		// successful-login entry is written. Guard the lookup instead of
+		// touching the session, which keeps the recorded values unchanged.
+		$data['userId']     =  isset($this->jxcsys['uid']) ? $this->jxcsys['uid'] : null;
+		$data['name']       =  isset($this->jxcsys['name']) ? $this->jxcsys['name'] : null;
 		$data['ip']         =  $this->input->ip_address();
 		$data['log']        =  $info;
-		$data['loginName']  =  $this->jxcsys['username'];
+		$data['loginName']  =  isset($this->jxcsys['username']) ? $this->jxcsys['username'] : null;
 		$data['adddate']    =  date('Y-m-d H');
 		$data['modifyTime'] =  date('Y-m-d H:i:s');
 		$this->mysql_model->insert('log',$data);		

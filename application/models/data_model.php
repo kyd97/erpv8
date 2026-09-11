@@ -201,7 +201,7 @@ class Data_model extends CI_Model{
 	
 	
 	//商品收发明细表(期初数量)  商品收发明细表(接口)
-	public function get_goods_beginning($where='',$beginDate,$type=2) {
+	public function get_goods_beginning($where='',$beginDate=null,$type=2) {
 	    $sql = 'select 
 					a.id,a.name as invName, a.number as invNumber, a.spec as invSpec,b.qty
 				from '.$this->db->dbprefix('goods').' as a 
@@ -231,7 +231,7 @@ class Data_model extends CI_Model{
 	}
 	
 	//获取商品收发汇总表 
-	public function get_deliverSummary($where='',$beginDate,$endDate,$type=2) {
+	public function get_deliverSummary($where='',$beginDate=null,$endDate=null,$type=2) {
 	    $sql = 'select 
 		            sum(case when a.billDate<"'.$beginDate.'" then qty else 0 end ) as qty0,
 		            sum(qty) as qty14,

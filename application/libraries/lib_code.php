@@ -1,5 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+#[\AllowDynamicProperties]
 class Lib_code {
 
     public function __construct(){	

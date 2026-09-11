@@ -94,7 +94,7 @@ function v($data,$pos) {
 
 class OLERead {
 	var $data = '';
-	function OLERead(){	}
+	function __construct(){	}
 
 	function read($sFileName){
 		// check if file exist and is readable (Darko Miljanovic)
@@ -542,7 +542,7 @@ class Excel_reader2 {
 		}
 		return null;
 	}
-	function fontProperty($row,$col,$sheet=0,$prop) {
+	function fontProperty($row,$col,$sheet=0,$prop=null) {
 		$font = $this->fontRecord($row,$col,$sheet);
 		if ($font!=null) {
 			return $font[$prop];
@@ -913,8 +913,8 @@ class Excel_reader2 {
 	 *
 	 * Some basic initialisation
 	 */
-	function Excel_reader2($file='',$store_extended_info=true,$outputEncoding='') {
-		$this->_ole =& new OLERead();
+	function __construct($file='',$store_extended_info=true,$outputEncoding='') {
+		$this->_ole = new OLERead();
 		$this->setUTFEncoder('iconv');
 		if ($outputEncoding != '') { 
 			$this->setOutputEncoding($outputEncoding);

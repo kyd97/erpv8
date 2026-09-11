@@ -14,3 +14,6 @@ data/cache/*
 Thumbs.db
 *~
 *.swp
+
+# Local credentials and dev-only overrides
+.env.local
